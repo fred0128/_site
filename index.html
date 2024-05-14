@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Seite</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="top"></div>
+        <header>
+            <img class="bundeskriminalamt-img" src="images/logo_respimage.png" alt="">
+            <img class="bka-img" src="images/AdditionalLogo.svg" alt="">
+        </header>
+        <main>
+            <div class="message message-1">
+                <h1>Die Plattform und der kriminelle Inhalt wurden beschlagnahmt</h1>
+                <p>durch das Bundeskriminalamt <br> und die Zentralstelle Cybercrime Bayern (ZCB)</p>
+            </div>
+            <div class="message message-2">
+                <h1>The platform and the criminal content have been seized</h1>
+                <p>by the Federal Criminal Police Office (BKA) <br> and the Bavarian Central Office for the
+                    Prosecution of Cybercrime</p>
+            </div>
+        </main>
+
+        <div class="bottom">
+            <div class="ip-box">
+                <p>
+                    Ihre IP-Adresse: <span id="ip"></span>
+                </p>
+                <p>
+                    Standort: <span id="lokasyon"></span>
+                </p>
+                <p>
+                    Ihr Internetanbieter: <span id="internet-saglayici"></span>
+                </p>
+            </div>
+            <div class="btm-text">
+                <p>All logs are recorded</p>
+                <p class="btm-text-line">|</p>
+                <p>Alle Protokolle werden aufgezeichnet</p>
+            </div>
+            <div class="bottom-item">
+                <div class="btm-item-circle"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        fetch('https://ipapi.co/json/')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('ip').innerText = data.ip;
+                document.getElementById('lokasyon').innerText = data.city + ', ' + data.region + ', ' + data.country_name;
+                document.getElementById('internet-saglayici').innerText = data.org;
+            })
+            .catch(error => console.error('IP bilgileri alınırken bir hata oluştu:', error));
+    </script>
+
+</body>
+
+</html>
